@@ -65,13 +65,15 @@ section {
 
 /* Navigation Styles*/
 .navbar__menu ul {
+    padding:2%;
     padding-left: 0;
     margin: 0;
-    text-align: right;
+    text-align: center;
 }
 
 .navbar__menu li {
-    display: inline-block;
+    display: inline-flex;
+    padding-left: 2.5%;
 }
 
 .navbar__menu .menu__link {
@@ -79,7 +81,7 @@ section {
     padding: 1em;
     font-weight: bold;
     text-decoration: none;
-    color: #000;
+    color: #474c6ad1;
 }
 
 .navbar__menu .menu__link:hover {
