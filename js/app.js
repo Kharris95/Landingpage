@@ -42,7 +42,7 @@ const navBuilder=() => {
   sections.forEach(section => {
       const sectionID = section.id;
       const sectionDataNav = section.dataset.nav;
-      navUI += `<li><a class="menuLink" href="#${sectionID}">${sectionDataNav}</a></li>`;
+      navUI += `<li><a class="menu__link" href="#${sectionID}">${sectionDataNav}</a></li>`;
   });
   navigation.innerHTML=navUI;   
 
@@ -55,38 +55,48 @@ const bounding = (section) => {
   return Math.floor(section.getBoundingClientRect().top);
 };
 //removes active class
-const removeActiveClass = (section) =>{
+const removeActiveClass = (section,link) =>{
   section.classList.remove('your-active-class');
+  link.classList.remove('active-link');
 };
 // adds active class
-const addActive = (cond,section) => {
+const addActive = (cond,section,link) => {
   if(cond){
       section.classList.add('your-active-class');
+      link.classList.add('active-link');
   };
 };
 // putting both together for the function
-const activateSection = () =>{
-  sections.forEach(section => { 
-      const boundingSection = bounding(section);
-      inviewport = () => boundingSection <120 && boundingSection >= -120;
-      removeActiveClass(section);
-      addActive(inviewport(),section);
+const activateSection = () => {
+  const navLinks = document.querySelectorAll('.menu__link');
+  sections.forEach((section, index) => {
+    const boundingSection = bounding(section);
+    const inViewport = boundingSection < 120 && boundingSection >= -120;
+    
+    // Remove active state from section and nav link
+    removeActiveClass(section, navLinks[index]);
+    
+    // Add active state if section is in viewport
+    addActive(inViewport, section, navLinks[index]);
   });
 };
 window.addEventListener('scroll',activateSection);
 // Scroll to anchor ID using scrollTO event
 
 const scroll = () => {
-  const links = document.querySelectorAll('.navbar__menu a');
+  const links = document.querySelectorAll('#navbar__list a');
   links.forEach(link => {
-    link.addEventListener('click', () =>{
-      for(i = 0 ; i<sections ; i++){
-        sections[i].addEventListener("click",sectionScroll(link));
-      }
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      const targetSection = document.querySelector(link.getAttribute('href'));
+      targetSection.scrollIntoView({
+        behavior: 'smooth',  
+        block: 'start'
+      });
     });
   });
 };
-scrolling();
+scroll();
 /**
 
 * End Main Functions
