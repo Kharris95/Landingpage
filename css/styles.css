@@ -78,7 +78,6 @@ section {
 
 .navbar__menu .menu__link {
     display: block;
-    padding: 1em;
     font-weight: bold;
     text-decoration: none;
     color: #474c6ad1;
@@ -90,9 +89,18 @@ section {
     transition: ease 0.3s all;
 }
 
+@media (max-width: 768px) { 
+    .navbar__menu .menu__link:hover {
+        background: none;
+        color: inherit; 
+        cursor: default; /* Changes cursor to default, to indicate no action on hover */
+        transition: none; 
+    }
+}
+
 /* Header Styles */
 .page__header {
-    padding: 0.5em 0; /* Adjust padding to reduce height */
+    padding: 0.1em 0; 
     background: #fff;
     position: fixed;
     top: 0;
