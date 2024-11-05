@@ -92,6 +92,7 @@ section {
 
 /* Header Styles */
 .page__header {
+    padding: 0.5em 0; /* Adjust padding to reduce height */
     background: #fff;
     position: fixed;
     top: 0;
@@ -124,6 +125,19 @@ section {
         padding: 4em;
     }
 }
+
+.your-active-class {
+    background: rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease;
+  }
+  
+  /* Navigation Link Active Styling */
+  .active-link {
+    background-color: rgba(0, 0, 0, 0.5); /* Matches active section background */
+    color: #fff;
+    font-weight: bold;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
 
 section:nth-of-type(even) .landing__container {
     margin-right: 0;
